@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent Hub | Cool Facts Matrix</title>
+  <meta name="description" content="Access the automated Sentinel daily data facts engine pipeline.">
+  <meta name="robots" content="index, follow">
+  <style>
+    @import url('https://googleapis.com');
+
+    html, body {
+      background-color: transparent !important;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .sentinel-viewing-deck {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .terminal-frame-booster {
+      width: 100%;
+      background-color: #0e0f14;
+      border: 2px solid #00f2ff;
+      border-radius: 14px;
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.25), inset 0 0 20px rgba(0, 242, 255, 0.05);
+      overflow: hidden;
+      padding: 30px;
+      box-sizing: border-box;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Animated scanning laser line across the matrix background */
+    .terminal-frame-booster::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00f2ff, transparent);
+      animation: scanline 4s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes scanline {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+
+    .facts-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #2d3446;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .header-title {
+      color: #00f2ff;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .header-subtext {
+      color: #637381;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .fact-slider-container {
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .fact-slide {
+      display: none;
+      width: 100%;
+      animation: fadeBlend 0.6s ease-in-out forwards;
+    }
+
+    .fact-slide.active {
+      display: block;
+    }
+
+    @keyframes fadeBlend {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fact-heading {
+      color: #00f2ff;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .fact-body {
+      color: #ffffff;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+    }
+
+    /* Technical grid background pattern overlay */
+    .matrix-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(0, 242, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 255, 0.02) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sentinel-viewing-deck">
+  <div class="terminal-frame-booster">
+    <div class="matrix-overlay"></div>
+    
+    <div class="facts-header">
+      <div class="header-title">⚡ SENTINEL DATABASE: INTEGRATED MATRIX</div>
+      <div class="header-subtext">TODAYS DAILY FACT IS:</div>
+    </div>
+
+    <div class="fact-slider-container">
+      <!-- 1 -->
+      <div class="fact-slide active">
+        <div class="fact-heading">THE SECRET RECIPE</div>
+        <div class="fact-body">The iconic falling green code lines in *The Matrix* films were created by scanning a Japanese cookbook. The rain of symbols is actually a digital manipulation of sushi and ramen recipes.</div>
+      </div>
+      <!-- 2 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE LATE ARRIVAL</div>
+        <div class="fact-body">A classic fairytale fairy was completely omitted from early 1937 animated film storyboards. Writers and background sketch artists initially left out Tinker Bell entirely before integrating her into later scripts.</div>
+      </div>
+      <!-- 3 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE FIFTY-WORD BOUNDARY</div>
+        <div class="fact-body">A famous children's author wrote an entire book about green eggs using a strict bet constraint. The mathematical vocabulary limit forced the writer to use exactly 50 unique words across the whole story.</div>
+      </div>
+      <!-- 4 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE MARATHON SENTENCE</div>
+        <div class="fact-body">A famous historical fiction novel about a rebellion holds a structural world record. Deep inside *Les Misérables*, the author composed a single continuous sentence that strings together 823 words without a single period.</div>
+      </div>
+      <!-- 5 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE DOUBLE SYMBOL</div>
+        <div class="fact-body">Printers created a specialized hybrid punctuation mark combining surprise and confusion ( ‽ ). The technical typography term for an exclamation point fused over a question mark is called an Interrobang.</div>
+      </div>
+      <!-- 6 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE EXTINCTION COUNT</div>
+        <div class="fact-body">A farmer has 15 cows on a field wrapper network. If a sudden open gate accident occurs and all but 8 of them escape into the wild, the exact number of cows remaining in the pasture layout is exactly 8.</div>
+      </div>
+      <!-- 7 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE SEQUENCE GATEWAY</div>
+        <div class="fact-body">Looking closely at the geometric numerical progression loop of 2, 4, 8, 16, 32... reveals a strict binary doubling value curve. Following this precise scaling progression, the next number that appears in line is exactly 64.</div>
+      </div>
+      <!-- 8 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE HALF-WAY POINT</div>
+        <div class="fact-body">A patch of magical lilies on a lake doubles in size every single day and takes 48 days to cover the surface. Because of exponential scaling, the lake was exactly half-covered on Day 47.</div>
+      </div>
+      <!-- 9 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE METALLIC LIMIT</div>
+        <div class="fact-body">The concentrated hydrochloric acid inside a normal human stomach operates at an intense pH level between 1 and 2. This chemical environment is powerful enough to completely dissolve metallic iron razor blades.</div>
+      </div>
+      <!-- 10 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE CHILLING NIGHTS</div>
+        <div class="fact-body">The planet closest to our sun experiences extreme atmospheric heat shifts. Because it completely lacks a thick atmosphere layer to trap energy, surface temperatures drop down to a freezing -180°C at night.</div>
+      </div>
+      <!-- 11 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE BLOCKS OF PREVENTION</div>
+        <div class="fact-body">Psychological data reveals that playing immersive blocks sorting spatial puzzles within hours of a stressful event acts as a memory shield, overloading the brain layers to prevent visual trauma.</div>
+      </div>
+      <!-- 12 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE LANTERN LAUNCH</div>
+        <div class="fact-body">The most successful software release in entertainment history hit over $1 billion in global sales in just three days. The open-world gaming record belongs to Grand Theft Auto V.</div>
+      </div>
+      <!-- 13 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE CHOPSTICK EFFECT</div>
+        <div class="fact-body">To capture the iconic space pod movements for the original *Star Wars* spaceships, visual effects technicians used cheap household items, building engine rigs using kitchen chopsticks.</div>
+      </div>
+      <!-- 14 -->
+      <div class="fact-slide">
+        <div class="fact-heading">THE ELEVEN-POINT DROP</div>
+        <div class="fact-body">Traditional table tennis matching frameworks received a major regulations update to speed up tournament play dynamics. Official game sets dropped their historical 21-point target score limit down to 11 points.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSlideIndex = 0;
+  const slides = document.querySelectorAll('.fact-slide');
+  const totalSlides = slides.length;
+
+  function cycleSlides() {
+    slides[currentSlideIndex].classList.remove('active');
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    slides[currentSlideIndex].classList.add('active');
+  }
+
+  // Set to 86400000 milliseconds to rotate exactly once per day (24 hours)
+  setInterval(cycleSlides, 86400000);
+</script>
+
+</body>
+</html>
