@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent Hub | The World Master Terminal</title>
+  <meta name="description" content="Access the official Talent Hub matrix. Scan the database parameters, review the active leaderboard status, and interact face-to-face with the World Master.">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      background-color: transparent !important;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .sentinel-active-terminal {
+      max-width: 900px !important;
+      margin: 15px auto !important;
+      padding: 22px !important;
+      background-color: #0e0f14 !important;
+      border: 2px solid #00f2ff !important;
+      border-radius: 14px !important;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.2) !important;
+      box-sizing: border-box !important;
+    }
+    .console-layout-flex {
+      display: flex !important;
+      gap: 12px !important;
+      align-items: center !important;
+    }
+    input.sentinel-typing-core {
+      flex: 1 !important;
+      background-color: #1f2430 !important;
+      font-family: 'Inter', monospace !important;
+      font-size: 16px !important;
+      color: #00f2ff !important;
+      border: 2px solid #2d3446 !important;
+      border-radius: 8px !important;
+      padding: 14px 18px !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+      transition: all 0.25s ease-in-out !important;
+    }
+    input.sentinel-typing-core:focus {
+      border-color: #00f2ff !important;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.4) !important;
+      background-color: #1f2430 !important;
+    }
+    input.sentinel-typing-core::placeholder {
+      color: #637381 !important;
+      font-family: 'Inter', sans-serif !important;
+      letter-spacing: 1px !important;
+      font-size: 14px !important;
+    }
+    button.sentinel-activation-key {
+      background-color: #00f2ff !important;
+      color: #050608 !important;
+      font-family: 'Inter', sans-serif !important;
+      font-weight: bold !important;
+      font-size: 14px !important;
+      letter-spacing: 0.5px !important;
+      border: none !important;
+      border-radius: 8px !important;
+      height: 52px !important;
+      padding: 0 24px !important;
+      cursor: pointer !important;
+      transition: transform 0.15s ease !important;
+      box-sizing: border-box !important;
+    }
+    button.sentinel-activation-key:hover {
+      transform: scale(1.02) !important;
+    }
+    .sentinel-results-frame {
+      margin-top: 25px !important;
+      padding: 20px !important;
+      background-color: #1f2430 !important;
+      border: 1px solid #2d3446 !important;
+      border-radius: 10px !important;
+      box-sizing: border-box !important;
+      min-height: 150px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .ai-link-wrapper {
+      color: #ffffff; 
+      text-decoration: none; 
+      font-size: 14px; 
+      line-height: 1.6; 
+      display: block; 
+      background-color: rgba(0, 242, 255, 0.03); 
+      padding: 14px; 
+      border-left: 3px solid #00f2ff; 
+      border-radius: 4px; 
+      transition: background 0.2s;
+    }
+    .ai-link-wrapper:hover {
+      background-color: rgba(0, 242, 255, 0.08) !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sentinel-active-terminal">
+  <div class="console-layout-flex">
+    <input type="text" id="sentinelQuery" class="sentinel-typing-core" placeholder="ASK ANY QUESTION IN THE UNIVERSE..." required autocomplete="off">
+    <button type="button" class="sentinel-activation-key" onclick="executeSentinelSearch();">SCAN ➡️</button>
+  </div>
+  <div id="sentinelResultsInline" class="sentinel-results-frame" style="display:none;">
+    <div id="sentinelOutputContainer"></div>
+  </div>
+</div>
+
+<script>
+function executeSentinelSearch() {
+  var userQuery = document.getElementById('sentinelQuery').value.trim();
+  if (!userQuery) return;
+
+  var targetContainer = document.getElementById('sentinelResultsInline');
+  var outputBox = document.getElementById('sentinelOutputContainer');
+  
+  targetContainer.style.display = 'block';
+  outputBox.innerHTML = '<div style="color:#00f2ff; font-family:\'Inter\', sans-serif;">GENERATING AI TERMINAL OVERVIEW...</div>';
+
+  var cleanQuery = userQuery.replace(/^(what is|who is|tell me about|search for|why is|what are)\s+/i, '');
+  
+  var apiEndpoint = "https://wikipedia.org|info&exintro=1&explaintext=1&inprop=url&generator=search&gsrsearch=" + encodeURIComponent(cleanQuery) + "&gsrlimit=1&origin=*";
+
+  fetch(apiEndpoint)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      if (!data || !data.query || !data.query.pages) {
+        outputBox.innerHTML = '<div style="color:#ff4a4a; font-family:\'Inter\', sans-serif;">MATRIX RECORD NOT FOUND. REPHRASE INQUIRY.</div>';
+        return;
+      }
+
+      var pages = data.query.pages;
+      var htmlContent = "";
+
+      Object.keys(pages).forEach(function(key) {
+        var page = pages[key];
+        if (page.extract) {
+          var summaryText = page.extract;
+          if (summaryText.length > 500) {
+            summaryText = summaryText.substring(0, 500) + "...";
+          }
+
+          htmlContent += '<div style="font-family:\'Inter\', sans-serif; text-align: left;">';
+          htmlContent += '  <div style="color: #00f2ff; font-size: 15px; font-weight: bold; margin-bottom: 4px; letter-spacing: 0.5px;">✨ SENTINEL AI OVERVIEW</div>';
+          htmlContent += '  <div style="color: #637381; font-size: 12px; margin-bottom: 12px;">Verified data matrix archive active</div>';
+          htmlContent += '  <a href="' + page.fullurl + '" target="_blank" class="ai-link-wrapper">';
+          htmlContent += summaryText;
+          htmlContent += '  </a>';
+          htmlContent += '</div>';
+        }
+      });
+
+      outputBox.innerHTML = htmlContent;
+    })
+    .catch(function(error) {
+      outputBox.innerHTML = '<div style="color:#ff4a4a; font-family:\'Inter\', sans-serif;">TRANSMISSION ERROR. UNABLE TO SECURE DATALINK.</div>';
+    });
+}
+</script>
+
+</body>
